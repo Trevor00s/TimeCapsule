@@ -519,7 +519,7 @@ export async function resolveCapsule(
   const txHash = await client.writeContract({
     address,
     functionName: "resolve_capsule",
-    args: [capsuleId],
+    args: [BigInt(capsuleId)],
     value: 0n,
   });
 
@@ -571,7 +571,7 @@ export async function getCapsule(id: string): Promise<Capsule> {
   const raw = await client.readContract({
     address,
     functionName: "get_capsule",
-    args: [id],
+    args: [BigInt(id)],
   });
   return decodeCapsule(raw);
 }
