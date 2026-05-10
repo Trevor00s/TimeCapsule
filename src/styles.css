@@ -1,0 +1,258 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* =========================================================================
+ * Mystical Oracle — design tokens
+ * Palette: midnight ink, candle gold, parchment, ember red, oracle emerald,
+ * smoky violet. All colors authored in oklch.
+ * ======================================================================= */
+
+@theme inline {
+  --font-display: "Cinzel", "Cormorant Garamond", serif;
+  --font-body: "EB Garamond", "Iowan Old Style", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+  --radius-2xl: 32px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-parchment: var(--parchment);
+  --color-ink: var(--ink);
+  --color-ink-deep: var(--ink-deep);
+  --color-ember: var(--ember);
+  --color-emerald-rune: var(--emerald-rune);
+  --color-smoke: var(--smoke);
+}
+
+:root {
+  --radius: 14px;
+
+  /* Core palette */
+  --ink-deep: oklch(0.13 0.04 280);            /* deepest midnight */
+  --ink: oklch(0.18 0.05 280);                 /* card surface */
+  --parchment: oklch(0.94 0.04 85);            /* warm cream */
+  --gold: oklch(0.82 0.16 84);                 /* candle gold */
+  --gold-soft: oklch(0.66 0.12 78);            /* aged brass */
+  --ember: oklch(0.62 0.22 25);                /* false / blood */
+  --emerald-rune: oklch(0.68 0.16 156);        /* true / verdant */
+  --smoke: oklch(0.55 0.08 305);               /* unresolvable / violet smoke */
+
+  --background: var(--ink-deep);
+  --foreground: var(--parchment);
+
+  --card: oklch(0.2 0.05 280);
+  --card-foreground: var(--parchment);
+
+  --popover: oklch(0.18 0.05 280);
+  --popover-foreground: var(--parchment);
+
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.15 0.04 280);
+
+  --secondary: oklch(0.25 0.05 280);
+  --secondary-foreground: var(--parchment);
+
+  --muted: oklch(0.24 0.04 280);
+  --muted-foreground: oklch(0.7 0.04 80);
+
+  --accent: oklch(0.3 0.07 290);
+  --accent-foreground: var(--parchment);
+
+  --destructive: var(--ember);
+  --destructive-foreground: var(--parchment);
+
+  --border: oklch(0.3 0.05 285 / 0.6);
+  --input: oklch(0.22 0.05 285);
+  --ring: var(--gold);
+}
+
+/* Map dark/light to the same set — single canonical theme */
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-feature-settings: "kern", "liga", "onum";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+
+  ::selection {
+    background: oklch(0.82 0.16 84 / 0.35);
+    color: var(--parchment);
+  }
+}
+
+/* =========================================================================
+ * Atmosphere
+ * ======================================================================= */
+
+.bg-cosmos {
+  background:
+    radial-gradient(1200px 700px at 12% -10%, oklch(0.32 0.12 295 / 0.55), transparent 60%),
+    radial-gradient(900px 600px at 95% 10%, oklch(0.3 0.14 35 / 0.35), transparent 60%),
+    radial-gradient(1100px 800px at 50% 110%, oklch(0.25 0.1 270 / 0.6), transparent 60%),
+    var(--ink-deep);
+}
+
+.starfield::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, oklch(0.95 0.05 85) 50%, transparent 60%),
+    radial-gradient(1px 1px at 70% 80%, oklch(0.9 0.03 85) 50%, transparent 60%),
+    radial-gradient(1px 1px at 40% 60%, oklch(0.92 0.04 85) 50%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 85% 25%, oklch(0.88 0.06 85) 50%, transparent 60%),
+    radial-gradient(1px 1px at 10% 80%, oklch(0.95 0.05 85) 50%, transparent 60%),
+    radial-gradient(1px 1px at 55% 15%, oklch(0.9 0.04 85) 50%, transparent 60%);
+  background-size: 600px 600px;
+  opacity: 0.6;
+  animation: drift 60s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes drift {
+  from { background-position: 0 0; }
+  to   { background-position: 600px 600px; }
+}
+
+/* =========================================================================
+ * Ornaments
+ * ======================================================================= */
+
+.gilded {
+  position: relative;
+  background: linear-gradient(180deg,
+    oklch(0.22 0.06 285) 0%,
+    oklch(0.17 0.05 280) 100%);
+  border: 1px solid oklch(0.82 0.16 84 / 0.35);
+  box-shadow:
+    0 0 0 1px oklch(0.82 0.16 84 / 0.08) inset,
+    0 30px 60px -30px oklch(0 0 0 / 0.7),
+    0 0 80px -30px oklch(0.82 0.16 84 / 0.25);
+}
+
+.gilded-strong {
+  border: 1px solid oklch(0.82 0.16 84 / 0.6);
+  box-shadow:
+    0 0 0 1px oklch(0.82 0.16 84 / 0.2) inset,
+    0 0 60px -10px oklch(0.82 0.16 84 / 0.45),
+    0 30px 80px -30px oklch(0 0 0 / 0.8);
+}
+
+.text-gold {
+  background: linear-gradient(180deg, oklch(0.92 0.13 90), oklch(0.7 0.16 70));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.divider-rune {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    oklch(0.82 0.16 84 / 0.5) 50%,
+    transparent 100%);
+}
+
+.candle-glow {
+  box-shadow:
+    0 0 20px oklch(0.82 0.16 84 / 0.4),
+    0 0 60px oklch(0.82 0.16 84 / 0.2);
+}
+
+.seal-stamp {
+  background:
+    radial-gradient(circle at 30% 25%, oklch(0.95 0.18 80) 0%, oklch(0.6 0.2 35) 60%, oklch(0.35 0.18 30) 100%);
+  box-shadow:
+    inset 0 0 12px oklch(0 0 0 / 0.45),
+    0 4px 16px oklch(0 0 0 / 0.5),
+    0 0 30px oklch(0.7 0.2 40 / 0.4);
+}
+
+/* =========================================================================
+ * Animations
+ * ======================================================================= */
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  45% { opacity: 0.92; filter: brightness(1.05); }
+  55% { opacity: 0.85; filter: brightness(0.92); }
+}
+
+.flicker {
+  animation: flicker 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    oklch(0.82 0.16 84 / 0.35) 50%,
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes pulse-rune {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.04); opacity: 1; }
+}
+
+.pulse-rune {
+  animation: pulse-rune 3.5s ease-in-out infinite;
+}
+
+@keyframes sigil-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.sigil-spin {
+  animation: sigil-spin 24s linear infinite;
+}
